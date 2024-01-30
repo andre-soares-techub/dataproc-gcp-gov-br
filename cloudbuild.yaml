@@ -1,0 +1,15 @@
+steps:
+- name: ubuntu
+  args: ['bash', '-c', "echo '$COMMIT_SHA' > REVISION.txt"]
+- name: gcr.io/cloud-builders/gsutil
+  args:
+    - '-m'
+    - 'rsync'
+    - '-d'
+    - '-r'
+    - 'api-gov-br'
+    - 'gs://techub-demo-bucket/script_submit_spark/api-gcp-gov-br/'
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+
